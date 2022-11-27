@@ -1,0 +1,42 @@
+C51 COMPILER V9.56.0.0   DISPLAY_COUNT                                                     12/03/2019 14:45:46 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE DISPLAY_COUNT
+OBJECT MODULE PLACED IN .\Objects\Display_Count.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Display_Count.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\Display_Count.lst) TABS(2) OBJECT(.\Objects\Display_Count.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "port.h"
+   3          
+   4          #include "Display_Count.h"
+   5          
+   6          
+   7          void DISPLAY_COUNT_Init(void)
+   8          {
+   9   1        Count_port = 0x00;
+  10   1      }
+  11          
+  12          //DISPLAY_COUNT_Update()
+  13          //simple function to display tByte data (count) on leds connected to port (Count_Port)
+  14          
+  15          void DISPLAY_COUNT_Update(const tByte COUNT)
+  16            {
+  17   1        Count_port = COUNT;
+  18   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      7    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

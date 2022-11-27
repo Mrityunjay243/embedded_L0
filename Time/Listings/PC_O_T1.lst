@@ -1,0 +1,71 @@
+C51 COMPILER V9.56.0.0   PC_O_T1                                                           12/05/2019 14:20:36 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE PC_O_T1
+OBJECT MODULE PLACED IN .\Objects\PC_O_T1.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE PC_O_T1.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\P
+                    -C_O_T1.lst) TABS(2) OBJECT(.\Objects\PC_O_T1.obj)
+
+line level    source
+
+   1          #include "Main.h"
+   2          #include "PC_O_T1.h"
+   3          
+   4          extern tByte Out_written_index_G;
+*** ERROR C127 IN LINE 4 OF PC_O_T1.c: 'Out_written_index_G': invalid storage class
+   5          extern tByte Out_waiting_index_G;
+*** ERROR C127 IN LINE 5 OF PC_O_T1.c: 'Out_waiting_index_G': invalid storage class
+   6          
+   7          void PC_LINK_O_Init_T1(const tWord BAUD_RATE)
+   8          {
+*** ERROR C132 IN LINE 8 OF PC_O_T1.c: '_PC_LINK_O_Init_T1': not in formal parameter list
+*** ERROR C141 IN LINE 8 OF PC_O_T1.c: syntax error near '{'
+   9            PCON &= 0x7F;
+*** ERROR C136 IN LINE 9 OF PC_O_T1.c: 'PCON': 'void' on variable
+*** ERROR C132 IN LINE 9 OF PC_O_T1.c: 'PCON': not in formal parameter list
+  10            
+  11            // Receiver disabled
+  12            //
+  13            
+  14            SCON = 0X42;
+*** ERROR C136 IN LINE 14 OF PC_O_T1.c: 'SCON': 'void' on variable
+*** ERROR C244 IN LINE 14 OF PC_O_T1.c: 'SCON': can't initialize, bad type or class
+*** ERROR C136 IN LINE 14 OF PC_O_T1.c: 'SCON': 'void' on variable
+*** ERROR C132 IN LINE 14 OF PC_O_T1.c: 'SCON': not in formal parameter list
+  15            
+  16            TMOD |= 0X20;
+*** ERROR C132 IN LINE 16 OF PC_O_T1.c: 'TMOD': not in formal parameter list
+*** ERROR C141 IN LINE 16 OF PC_O_T1.c: syntax error near '|='
+  17            
+  18            TH1 = (256 - (tByte)((((tLong)OSC_FREQ / 100) * 3125)
+*** ERROR C244 IN LINE 18 OF PC_O_T1.c: 'TH1': can't initialize, bad type or class
+  19                     / ((tLong) BAUD_RATE * OSC_PER_INST * 1000)));
+*** ERROR C202 IN LINE 19 OF PC_O_T1.c: 'BAUD_RATE': undefined identifier
+*** ERROR C132 IN LINE 19 OF PC_O_T1.c: 'TH1': not in formal parameter list
+  20            
+  21            TL1 = TH1;
+*** ERROR C244 IN LINE 21 OF PC_O_T1.c: 'TL1': can't initialize, bad type or class
+*** ERROR C132 IN LINE 21 OF PC_O_T1.c: 'TL1': not in formal parameter list
+  22            TR1 = 1;
+*** ERROR C244 IN LINE 22 OF PC_O_T1.c: 'TR1': can't initialize, bad type or class
+*** ERROR C132 IN LINE 22 OF PC_O_T1.c: 'TR1': not in formal parameter list
+  23            TI = 1;
+*** ERROR C244 IN LINE 23 OF PC_O_T1.c: 'TI': can't initialize, bad type or class
+*** ERROR C132 IN LINE 23 OF PC_O_T1.c: 'TI': not in formal parameter list
+  24            
+  25            Out_written_index_G = 0;
+*** ERROR C244 IN LINE 25 OF PC_O_T1.c: 'Out_written_index_G': can't initialize, bad type or class
+*** ERROR C132 IN LINE 25 OF PC_O_T1.c: 'Out_written_index_G': not in formal parameter list
+  26            Out_waiting_index_G = 0;
+*** ERROR C244 IN LINE 26 OF PC_O_T1.c: 'Out_waiting_index_G': can't initialize, bad type or class
+*** ERROR C132 IN LINE 26 OF PC_O_T1.c: 'Out_waiting_index_G': not in formal parameter list
+  27            
+  28            ES = 0;
+*** ERROR C244 IN LINE 28 OF PC_O_T1.c: 'ES': can't initialize, bad type or class
+C51 COMPILER V9.56.0.0   PC_O_T1                                                           12/05/2019 14:20:36 PAGE 2   
+
+*** ERROR C132 IN LINE 28 OF PC_O_T1.c: 'ES': not in formal parameter list
+  29          }
+*** ERROR C141 IN LINE 29 OF PC_O_T1.c: syntax error near '}'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  28 ERROR(S)

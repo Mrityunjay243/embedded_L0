@@ -1,0 +1,49 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              12/05/2019 15:27:42 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "Port.h"
+   3          #include "Simple_EOS.h"
+   4          
+   5          #include "PC_O_T1.h"
+   6          #include "Elap_232.h"
+   7          
+   8          void main(void)
+   9          {
+  10   1        //set baud rate to 9600
+  11   1        PC_LINK_O_Init_T1(9600);
+  12   1        
+  13   1        
+  14   1        //prepare for elapsed time measurement
+  15   1        Elapsed_Time_RS232_Init();
+  16   1        
+  17   1        //set up simple EOS (5ms ticks)
+  18   1        sEOS_Init_Timer2(5);
+  19   1        
+  20   1        while(1)
+  21   1        {
+  22   2          sEOS_Go_To_Sleep();
+  23   2        }
+  24   1      }
+  25          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     20    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

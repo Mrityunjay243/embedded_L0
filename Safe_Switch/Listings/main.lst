@@ -1,0 +1,46 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              12/03/2019 14:45:46 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "port.h"
+   3          
+   4          #include "Switch_wait_TimeoutL.h"
+   5          #include "Display_count.h"
+   6          
+   7          void main(void)
+   8          {
+   9   1        tByte Switch_presses = 0 ;
+  10   1         SWITCH_Init();
+  11   1        DISPLAY_COUNT_Init();
+  12   1        
+  13   1        while(1)
+  14   1        {
+  15   2          if(SWITCH_Get_Input(30) == SWITCH_PRESSED)
+  16   2          {
+  17   3            Switch_presses++ ;
+  18   3          }
+  19   2          
+  20   2          DISPLAY_COUNT_Update(Switch_presses) ;
+  21   2        }
+  22   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     25    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

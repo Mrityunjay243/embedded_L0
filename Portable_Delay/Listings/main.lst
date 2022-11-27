@@ -1,0 +1,42 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              12/02/2019 16:48:08 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "port.h"
+   3          
+   4          #include "Delay_T0.h"
+   5          #include "LED_Flash.h"
+   6          
+   7          void main(void)
+   8          {
+   9   1        LED_FLASH_Init();
+  10   1        
+  11   1        while(1)
+  12   1        {
+  13   2          //CHANGE THE LED STATE
+  14   2          LED_FLASH_Change_State();
+  15   2          
+  16   2          DELAY_TO_Wait(1000);//delay for approx 1000ms
+  17   2        }
+  18   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     15    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

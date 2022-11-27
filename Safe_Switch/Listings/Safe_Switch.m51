@@ -1,0 +1,248 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/03/2019  14:45:47  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\Delay_t0.obj, .\Objects\Display_Count.obj, .\Objects\main.obj, .\Objects\Switch_Wa
+>> it_TimeoutL.obj TO .\Objects\Safe_Switch PRINT (.\Listings\Safe_Switch.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Delay_t0.obj (DELAY_T0)
+  .\Objects\Display_Count.obj (DISPLAY_COUNT)
+  .\Objects\main.obj (MAIN)
+  .\Objects\Switch_Wait_TimeoutL.obj (SWITCH_WAIT_TIMEOUTL)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULCMP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LILDIDATA)
+
+
+LINK MAP OF MODULE:  .\Objects\Safe_Switch (DELAY_T0)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0005H     UNIT         _DATA_GROUP_
+                    000DH     0013H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         _BIT_GROUP_
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     004AH     UNIT         ?PR?_SWITCH_GET_INPUT?SWITCH_WAIT_TIMEOUTL
+            CODE    084AH     0031H     UNIT         ?C?LIB_CODE
+            CODE    087BH     0029H     UNIT         ?PR?_DELAY_TO_WAIT?DELAY_T0
+            CODE    08A4H     0019H     UNIT         ?PR?MAIN?MAIN
+            CODE    08BDH     000CH     UNIT         ?C_C51STARTUP
+            CODE    08C9H     0004H     UNIT         ?PR?DISPLAY_COUNT_INIT?DISPLAY_COUNT
+            CODE    08CDH     0003H     UNIT         ?PR?_DISPLAY_COUNT_UPDATE?DISPLAY_COUNT
+            CODE    08D0H     0003H     UNIT         ?PR?SWITCH_INIT?SWITCH_WAIT_TIMEOUTL
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Safe_Switch (DELAY_T0)
+
+
+SEGMENT                                             BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT                            START    LENGTH     START    LENGTH
+------------------------------------------------------------------------------------
+?C_C51STARTUP                                    -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                                    -----    -----      0008H    0001H
+  +--> ?PR?SWITCH_INIT?SWITCH_WAIT_TIMEOUTL
+  +--> ?PR?DISPLAY_COUNT_INIT?DISPLAY_COUNT
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/03/2019  14:45:47  PAGE 2
+
+
+  +--> ?PR?_SWITCH_GET_INPUT?SWITCH_WAIT_TIM...
+  +--> ?PR?_DISPLAY_COUNT_UPDATE?DISPLAY_COUNT
+
+?PR?_SWITCH_GET_INPUT?SWITCH_WAIT_TIM...         0020H.0  0000H.1    0009H    0004H
+  +--> ?PR?_DELAY_TO_WAIT?DELAY_T0
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Safe_Switch (DELAY_T0)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        DELAY_T0
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  D:00C8H         PUBLIC        T2CON
+  C:087BH         PUBLIC        _DELAY_TO_Wait
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_TO_WAIT
+  D:0006H         SYMBOL        N
+  -------         DO            
+  D:0004H         SYMBOL        ms
+  -------         ENDDO         
+  C:087BH         LINE#         7
+  C:087BH         LINE#         8
+  C:087BH         LINE#         11
+  C:087EH         LINE#         12
+  C:0881H         LINE#         14
+  C:0883H         LINE#         17
+  C:088DH         LINE#         18
+  C:0890H         LINE#         19
+  C:0893H         LINE#         21
+  C:0895H         LINE#         22
+  C:0897H         LINE#         24
+  C:089AH         LINE#         27
+  C:089CH         LINE#         28
+  C:08A3H         LINE#         29
+  -------         ENDPROC       _DELAY_TO_WAIT
+  -------         ENDMOD        DELAY_T0
+
+  -------         MODULE        DISPLAY_COUNT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/03/2019  14:45:47  PAGE 3
+
+
+  D:00B8H         PUBLIC        IP
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:08CDH         PUBLIC        _DISPLAY_COUNT_Update
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  C:08C9H         PUBLIC        DISPLAY_COUNT_Init
+  -------         PROC          DISPLAY_COUNT_INIT
+  C:08C9H         LINE#         7
+  C:08C9H         LINE#         8
+  C:08C9H         LINE#         9
+  C:08CCH         LINE#         10
+  -------         ENDPROC       DISPLAY_COUNT_INIT
+  -------         PROC          _DISPLAY_COUNT_UPDATE
+  D:0007H         SYMBOL        COUNT
+  C:08CDH         LINE#         15
+  C:08CDH         LINE#         16
+  C:08CDH         LINE#         17
+  C:08CFH         LINE#         18
+  -------         ENDPROC       _DISPLAY_COUNT_UPDATE
+  -------         ENDMOD        DISPLAY_COUNT
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:08A4H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        Switch_presses
+  -------         ENDDO         
+  C:08A4H         LINE#         7
+  C:08A4H         LINE#         8
+  C:08A4H         LINE#         9
+  C:08A7H         LINE#         10
+  C:08AAH         LINE#         11
+  C:08ADH         LINE#         13
+  C:08ADH         LINE#         14
+  C:08ADH         LINE#         15
+  C:08B4H         LINE#         16
+  C:08B4H         LINE#         17
+  C:08B6H         LINE#         18
+  C:08B6H         LINE#         20
+  C:08BBH         LINE#         21
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        SWITCH_WAIT_TIMEOUTL
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/03/2019  14:45:47  PAGE 4
+
+
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  B:0090H.0       PUBLIC        Switch_pin
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:0800H         PUBLIC        _SWITCH_Get_Input
+  C:08D0H         PUBLIC        SWITCH_Init
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          SWITCH_INIT
+  C:08D0H         LINE#         8
+  C:08D0H         LINE#         9
+  C:08D0H         LINE#         10
+  C:08D2H         LINE#         11
+  -------         ENDPROC       SWITCH_INIT
+  -------         PROC          _SWITCH_GET_INPUT
+  D:0003H         SYMBOL        DEBOUNCE_PERIOD
+  -------         DO            
+  B:0020H.0       SYMBOL        Return_value
+  D:0009H         SYMBOL        Timeout_loop
+  -------         ENDDO         
+  C:0800H         LINE#         13
+  C:0802H         LINE#         14
+  C:0802H         LINE#         15
+  C:0804H         LINE#         16
+  C:0810H         LINE#         18
+  C:0813H         LINE#         19
+  C:0813H         LINE#         23
+  C:0818H         LINE#         25
+  C:081BH         LINE#         26
+  C:081BH         LINE#         30
+  C:082EH         LINE#         34
+  C:0841H         LINE#         35
+  C:0841H         LINE#         36
+  C:0843H         LINE#         37
+  C:0845H         LINE#         40
+  C:0845H         LINE#         41
+  C:0847H         LINE#         42
+  C:0847H         LINE#         43
+  C:0847H         LINE#         44
+  C:0847H         LINE#         46
+  C:0849H         LINE#         47
+  -------         ENDPROC       _SWITCH_GET_INPUT
+  -------         ENDMOD        SWITCH_WAIT_TIMEOUTL
+
+  -------         MODULE        ?C?ULCMP
+  C:084AH         PUBLIC        ?C?ULCMP
+  -------         ENDMOD        ?C?ULCMP
+
+  -------         MODULE        ?C?LILDIDATA
+  C:0864H         PUBLIC        ?C?LILDIDATA
+  C:085BH         PUBLIC        ?C?LILDIDATA1
+  C:085DH         PUBLIC        ?C?LILDIDATA8
+  -------         ENDMOD        ?C?LILDIDATA
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0096H BYTE ( 7%) *
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/03/2019  14:45:47  PAGE 5
+
+
+******************************************************************************
+
+Program Size: data=14.1 xdata=0 code=214
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

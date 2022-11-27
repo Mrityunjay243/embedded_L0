@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\hardware50ms_delay" 
+PRINT(".\Listings\hardware50ms_delay.m51") RAMSIZE(256) 

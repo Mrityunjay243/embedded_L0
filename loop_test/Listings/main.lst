@@ -1,0 +1,48 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              12/03/2019 14:29:57 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          
+   3          #include "TimeoutL.h"
+   4          
+   5          typedef unsigned char tByte;
+   6          typedef unsigned int tWord;
+   7          typedef unsigned long tLong;
+   8          
+   9          void Test_Timeout(void) ;
+  10          
+  11          void main(void)
+  12          {
+  13   1        while(1)
+  14   1        {
+  15   2          Test_Timeout();
+  16   2        }
+  17   1      }
+  18          
+  19          void Test_Timeout(void)
+  20          {
+  21   1        tLong Timeout_loop = LOOP_TIMEOUT_INIT_10000ms;
+  22   1        //simple loop timeout
+  23   1        while (++Timeout_loop != 0);
+  24   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     34    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

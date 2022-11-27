@@ -1,0 +1,27 @@
+C51 COMPILER V9.56.0.0   CHAR_MAP                                                          12/05/2019 15:27:43 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE CHAR_MAP
+OBJECT MODULE PLACED IN .\Objects\CHAR_MAP.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE CHAR_MAP.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -CHAR_MAP.lst) TABS(2) OBJECT(.\Objects\CHAR_MAP.obj)
+
+line level    source
+
+   1          const char code CHAR_MAP_G[10]
+   2            ={'0','1','2','3','4','5','6','7','8','9'};
+   3              
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

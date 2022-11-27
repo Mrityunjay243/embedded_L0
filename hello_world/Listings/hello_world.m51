@@ -1,0 +1,161 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/02/2019  15:51:59  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj, .\Objects\LED_flash.obj, .\Objects\Delay_loop.obj TO .\Objects\hello_wor
+>> ld PRINT (.\Listings\hello_world.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  .\Objects\LED_flash.obj (LED_FLASH)
+  .\Objects\Delay_loop.obj (DELAY_LOOP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\hello_world (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+                    0008H     0018H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?LED_FLASH
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0020H     UNIT         ?PR?_DELAY_LOOP_WAIT?DELAY_LOOP
+            CODE    0820H     000FH     UNIT         ?PR?MAIN?MAIN
+            CODE    082FH     000DH     UNIT         ?PR?LED_FLASH_CHANGE_STATE?LED_FLASH
+            CODE    083CH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0848H     0003H     UNIT         ?PR?LED_FLASH_INIT?LED_FLASH
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\hello_world (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?LED_FLASH_INIT?LED_FLASH
+  +--> ?PR?LED_FLASH_CHANGE_STATE?LED_FLASH
+  +--> ?PR?_DELAY_LOOP_WAIT?DELAY_LOOP
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\hello_world (MAIN)
+
+  VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2019  15:51:59  PAGE 2
+
+
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0820H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:0820H         LINE#         7
+  C:0820H         LINE#         8
+  C:0820H         LINE#         9
+  C:0823H         LINE#         11
+  C:0823H         LINE#         12
+  C:0823H         LINE#         14
+  C:0826H         LINE#         17
+  C:082DH         LINE#         19
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        LED_FLASH
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0090H.5       PUBLIC        LED_pin
+  D:0090H         PUBLIC        P1
+  B:0020H.0       SYMBOL        LED_state_G
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0848H         PUBLIC        LED_FLASH_Init
+  D:0098H         PUBLIC        SCON
+  C:082FH         PUBLIC        LED_FLASH_Change_State
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          LED_FLASH_INIT
+  C:0848H         LINE#         10
+  C:0848H         LINE#         11
+  C:0848H         LINE#         12
+  C:084AH         LINE#         13
+  -------         ENDPROC       LED_FLASH_INIT
+  -------         PROC          LED_FLASH_CHANGE_STATE
+  C:082FH         LINE#         15
+  C:082FH         LINE#         16
+  C:082FH         LINE#         18
+  C:0832H         LINE#         19
+  C:0832H         LINE#         20
+  C:0834H         LINE#         21
+  C:0836H         LINE#         22
+  C:0837H         LINE#         24
+  C:0837H         LINE#         25
+  C:0839H         LINE#         26
+  C:083BH         LINE#         27
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2019  15:51:59  PAGE 3
+
+
+  C:083BH         LINE#         28
+  -------         ENDPROC       LED_FLASH_CHANGE_STATE
+  -------         ENDMOD        LED_FLASH
+
+  -------         MODULE        DELAY_LOOP
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  C:0800H         PUBLIC        _DELAY_LOOP_Wait
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_LOOP_WAIT
+  D:0006H         SYMBOL        DELAY_MS
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:0800H         LINE#         5
+  C:0800H         LINE#         6
+  C:0800H         LINE#         8
+  C:080AH         LINE#         9
+  C:080AH         LINE#         10
+  C:0818H         LINE#         11
+  C:081FH         LINE#         12
+  -------         ENDPROC       _DELAY_LOOP_WAIT
+  -------         ENDMOD        DELAY_LOOP
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 003FH BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=9.1 xdata=0 code=78
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

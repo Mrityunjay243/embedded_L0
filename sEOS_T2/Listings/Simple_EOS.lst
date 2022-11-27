@@ -1,0 +1,80 @@
+C51 COMPILER V9.56.0.0   SIMPLE_EOS                                                        12/02/2019 18:06:30 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SIMPLE_EOS
+OBJECT MODULE PLACED IN .\Objects\Simple_EOS.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Simple_EOS.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\Simple_EOS.lst) TABS(2) OBJECT(.\Objects\Simple_EOS.obj)
+
+line level    source
+
+   1          #include "Main.H"
+   2          #include "Simple_EOS.H"
+   3          
+   4          // Header for a dummy task
+   5          #include "X.H"
+   6          tByte count = 0;
+   7          
+   8          sEOS_ISR() interrupt INTERRUPT_Timer_2_Overflow
+   9          {
+  10   1        count++;
+  11   1        TF2 = 0;
+  12   1        
+  13   1        if(count>=200)
+  14   1          X();
+  15   1      }
+  16          
+  17          void sEOS_Init_Timer2(const tByte TICK_MS)
+  18          {
+  19   1        tLong Inc;
+  20   1        tWord Reload_16;
+  21   1        tByte Reload_08H , Reload_08L;
+  22   1        
+  23   1        //Timer 2 is configured as a 16-bit timer
+  24   1        //automatically realoaded when overflows
+  25   1        T2CON = 0x04;
+  26   1        //Number of timer increments required
+  27   1        Inc = ((tLong)TICK_MS * (OSC_FREQ/1000)) / (tLong)OSC_PER_INST;
+  28   1        
+  29   1        //16- bit reload value
+  30   1        Reload_16 = (tWord) (65536UL - Inc);
+  31   1        
+  32   1        // 8 bit reload values ( High and Low )
+  33   1        Reload_08H = (tByte)(Reload_16 / 256);
+  34   1        Reload_08L = (tByte)(Reload_16 % 256);
+  35   1        
+  36   1        //Used for manually checking timing in  simulator
+  37   1        
+  38   1        TH2 = Reload_08H;    // load timer 2 high byte
+  39   1        RCAP2H = Reload_08H; // load timer 2 reload capt. reg. high byte
+  40   1        TL2 = Reload_08L;    // Load timer 2 Low byte
+  41   1        RCAP2L = Reload_08L; // load timer 2 reload capt. reg. low byte
+  42   1        
+  43   1        ET2 = 1;
+  44   1        
+  45   1        TR2 = 1; //Start timer 2 running
+  46   1        
+  47   1        EA = 1;  //globally enable interrupts
+  48   1      }
+  49            void sEOS_Go_To_Sleep(void)
+  50            {
+  51   1          PCON |= 0x01;
+  52   1        }
+  53            
+  54            
+C51 COMPILER V9.56.0.0   SIMPLE_EOS                                                        12/02/2019 18:06:30 PAGE 2   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    128    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

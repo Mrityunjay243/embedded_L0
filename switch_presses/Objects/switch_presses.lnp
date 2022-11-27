@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\Delay_loop.obj",
+".\Objects\Display_Count.obj",
+".\Objects\Switch_Wait.obj" 
+TO ".\Objects\switch_presses" 
+PRINT(".\Listings\switch_presses.m51") RAMSIZE(256) 

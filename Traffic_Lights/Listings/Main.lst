@@ -1,0 +1,43 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              12/04/2019 15:33:39 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\Main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Main
+                    -.lst) TABS(2) OBJECT(.\Objects\Main.obj)
+
+line level    source
+
+   1          #include "Main.H"
+   2          #include "Port.H"
+   3          #include "Simple_EOS.h"
+   4          
+   5          #include "T_Lights.H"
+   6          
+   7          void main(void)
+   8          {
+   9   1        //prepare to run traffic sequence
+  10   1        TRAFFIC_LIGHTS_Init(RED);
+  11   1        
+  12   1        //set up simple EOS (50ms ticks)
+  13   1        sEOS_Init_Timer2(50);
+  14   1        
+  15   1        while(1)
+  16   1        {
+  17   2          sEOS_Go_To_Sleep();
+  18   2        }
+  19   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     15    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

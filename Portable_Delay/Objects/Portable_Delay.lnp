@@ -1,0 +1,5 @@
+".\Objects\Delay_t0.obj",
+".\Objects\main.obj",
+".\Objects\LED_flash.obj" 
+TO ".\Objects\Portable_Delay" 
+PRINT(".\Listings\Portable_Delay.m51") RAMSIZE(256) 

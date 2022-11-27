@@ -1,0 +1,5 @@
+".\Objects\Simple_EOS.obj",
+".\Objects\Main.obj",
+".\Objects\X.obj" 
+TO ".\Objects\sEOS_T2" 
+PRINT(".\Listings\sEOS_T2.m51") RAMSIZE(256) 

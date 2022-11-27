@@ -1,0 +1,173 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/02/2019  16:48:09  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\Delay_t0.obj, .\Objects\main.obj, .\Objects\LED_flash.obj TO .\Objects\Portable_De
+>> lay PRINT (.\Listings\Portable_Delay.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Delay_t0.obj (DELAY_T0)
+  .\Objects\main.obj (MAIN)
+  .\Objects\LED_flash.obj (LED_FLASH)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\Portable_Delay (DELAY_T0)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+                    0008H     0018H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?LED_FLASH
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0029H     UNIT         ?PR?_DELAY_TO_WAIT?DELAY_T0
+            CODE    0829H     000FH     UNIT         ?PR?MAIN?MAIN
+            CODE    0838H     000DH     UNIT         ?PR?LED_FLASH_CHANGE_STATE?LED_FLASH
+            CODE    0845H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0851H     0003H     UNIT         ?PR?LED_FLASH_INIT?LED_FLASH
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Portable_Delay (DELAY_T0)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?LED_FLASH_INIT?LED_FLASH
+  +--> ?PR?LED_FLASH_CHANGE_STATE?LED_FLASH
+  +--> ?PR?_DELAY_TO_WAIT?DELAY_T0
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Portable_Delay (DELAY_T0)
+
+  VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2019  16:48:09  PAGE 2
+
+
+  ----------------------------------
+
+  -------         MODULE        DELAY_T0
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  D:00C8H         PUBLIC        T2CON
+  C:0800H         PUBLIC        _DELAY_TO_Wait
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_TO_WAIT
+  D:0006H         SYMBOL        N
+  -------         DO            
+  D:0004H         SYMBOL        ms
+  -------         ENDDO         
+  C:0800H         LINE#         7
+  C:0800H         LINE#         8
+  C:0800H         LINE#         11
+  C:0803H         LINE#         12
+  C:0806H         LINE#         14
+  C:0808H         LINE#         17
+  C:0812H         LINE#         18
+  C:0815H         LINE#         19
+  C:0818H         LINE#         21
+  C:081AH         LINE#         22
+  C:081CH         LINE#         24
+  C:081FH         LINE#         27
+  C:0821H         LINE#         28
+  C:0828H         LINE#         29
+  -------         ENDPROC       _DELAY_TO_WAIT
+  -------         ENDMOD        DELAY_T0
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0829H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:0829H         LINE#         7
+  C:0829H         LINE#         8
+  C:0829H         LINE#         9
+  C:082CH         LINE#         11
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2019  16:48:09  PAGE 3
+
+
+  C:082CH         LINE#         12
+  C:082CH         LINE#         14
+  C:082FH         LINE#         16
+  C:0836H         LINE#         17
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        LED_FLASH
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0090H.5       PUBLIC        LED_pin
+  D:0090H         PUBLIC        P1
+  B:0020H.0       SYMBOL        LED_state_G
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0851H         PUBLIC        LED_FLASH_Init
+  D:0098H         PUBLIC        SCON
+  C:0838H         PUBLIC        LED_FLASH_Change_State
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          LED_FLASH_INIT
+  C:0851H         LINE#         10
+  C:0851H         LINE#         11
+  C:0851H         LINE#         12
+  C:0853H         LINE#         13
+  -------         ENDPROC       LED_FLASH_INIT
+  -------         PROC          LED_FLASH_CHANGE_STATE
+  C:0838H         LINE#         15
+  C:0838H         LINE#         16
+  C:0838H         LINE#         18
+  C:083BH         LINE#         19
+  C:083BH         LINE#         20
+  C:083DH         LINE#         21
+  C:083FH         LINE#         22
+  C:0840H         LINE#         24
+  C:0840H         LINE#         25
+  C:0842H         LINE#         26
+  C:0844H         LINE#         27
+  C:0844H         LINE#         28
+  -------         ENDPROC       LED_FLASH_CHANGE_STATE
+  -------         ENDMOD        LED_FLASH
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0048H BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=9.1 xdata=0 code=87
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

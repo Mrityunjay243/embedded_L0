@@ -1,0 +1,5 @@
+".\Objects\Main.obj",
+".\Objects\Simple_EOS.obj",
+".\Objects\T_Lights.obj" 
+TO ".\Objects\Traffic_Lights" 
+PRINT(".\Listings\Traffic_Lights.m51") RAMSIZE(256) 

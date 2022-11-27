@@ -1,0 +1,6 @@
+".\Objects\Delay_t0.obj",
+".\Objects\Display_Count.obj",
+".\Objects\main.obj",
+".\Objects\Switch_Wait_TimeoutL.obj" 
+TO ".\Objects\Safe_Switch" 
+PRINT(".\Listings\Safe_Switch.m51") RAMSIZE(256) 

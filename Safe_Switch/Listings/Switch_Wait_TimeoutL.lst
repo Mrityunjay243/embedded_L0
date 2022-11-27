@@ -1,0 +1,73 @@
+C51 COMPILER V9.56.0.0   SWITCH_WAIT_TIMEOUTL                                              12/03/2019 14:45:46 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SWITCH_WAIT_TIMEOUTL
+OBJECT MODULE PLACED IN .\Objects\Switch_Wait_TimeoutL.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Switch_Wait_TimeoutL.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT
+                    -(.\Listings\Switch_Wait_TimeoutL.lst) TABS(2) OBJECT(.\Objects\Switch_Wait_TimeoutL.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "port.h"
+   3          
+   4          #include "Switch_wait_TimeoutL.h"
+   5          #include "Delay_t0.h"
+   6          #include "TimeoutL.h"
+   7          
+   8          void SWITCH_Init(void)
+   9          {
+  10   1        Switch_pin = 1 ; //use this pin for input
+  11   1      }
+  12          
+  13          bit SWITCH_Get_Input(const tByte DEBOUNCE_PERIOD)
+  14          {
+  15   1        bit Return_value = SWITCH_NOT_PRESSED ;
+  16   1        tLong Timeout_loop = LOOP_TIMEOUT_INIT_10000ms ;
+  17   1        
+  18   1        if(Switch_pin == 0)
+  19   1        {
+  20   2          // switch is presssed
+  21   2          // debounce _just wait
+  22   2          
+  23   2          DELAY_TO_Wait(DEBOUNCE_PERIOD) ;
+  24   2          
+  25   2          if(Switch_pin == 0)
+  26   2          {
+  27   3            //wait until switch is released
+  28   3            //with timeout loop - 10 sec
+  29   3            
+  30   3            while((Switch_pin == 0) && (++Timeout_loop != 0)) ;
+  31   3            
+  32   3            // check for timeout
+  33   3            
+  34   3            if(Timeout_loop == 0)
+  35   3            {
+  36   4              Return_value = SWITCH_NOT_PRESSED ;
+  37   4            }
+  38   3            
+  39   3            else
+  40   3            {
+  41   4              Return_value = SWITCH_PRESSED ;
+  42   4            }
+  43   3          }
+  44   2        }
+  45   1        
+  46   1        return Return_value ;
+  47   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     77    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V9.56.0.0   SWITCH_WAIT_TIMEOUTL                                              12/03/2019 14:45:46 PAGE 2   
+
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,120 @@
+C51 COMPILER V9.56.0.0   T_LIGHTS                                                          12/04/2019 15:34:16 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE T_LIGHTS
+OBJECT MODULE PLACED IN .\Objects\T_Lights.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE T_Lights.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -T_Lights.lst) TABS(2) OBJECT(.\Objects\T_Lights.obj)
+
+line level    source
+
+   1          #include "Main.H"
+   2          #include "Port.H"
+   3          
+   4          #include "T_Lights.H"
+   5          
+   6          #define ON 0
+   7          #define OFF 1
+   8          
+   9          //Times in each of the states
+  10          
+  11          #define RED_DURATION 20
+  12          #define RED_AND_AMBER_DURATION 5
+  13          #define GREEN_DURATION 30
+  14          #define AMBER_DURATION 5
+  15          
+  16          
+  17          // state of the system
+  18          static eLight_State Light_state_G;
+  19          
+  20          // time time in that state
+  21          static tLong Time_in_state;
+  22          
+  23          // used by sEOS
+  24          static tByte Call_count_G = 0;
+  25          
+  26          void TRAFFIC_LIGHTS_Init(const eLight_State START_STATE)
+  27          {
+  28   1        Light_state_G = START_STATE; //decide on initial state
+  29   1      }
+  30          
+  31          void TRAFFIC_LIGHTS_Update(void)
+  32          {
+  33   1        switch(Light_state_G)
+  34   1        {
+  35   2          case RED:
+  36   2          {
+  37   3            Red_light = ON;
+  38   3            Amber_light = OFF;
+  39   3            Green_light = OFF;
+  40   3            
+  41   3            if (++Time_in_state == RED_DURATION)
+  42   3            {
+  43   4              Light_state_G = RED_AND_AMBER;
+  44   4              Time_in_state = 0;
+  45   4            }
+  46   3            break;
+  47   3          }
+  48   2          case RED_AND_AMBER:
+  49   2          {
+  50   3            Red_light = ON;
+  51   3            Amber_light = ON;
+  52   3            Green_light = OFF;
+  53   3            
+  54   3            if(++Time_in_state == RED_AND_AMBER_DURATION)
+C51 COMPILER V9.56.0.0   T_LIGHTS                                                          12/04/2019 15:34:16 PAGE 2   
+
+  55   3            {
+  56   4              Light_state_G = GREEN;
+  57   4              Time_in_state = 0;
+  58   4            }
+  59   3            
+  60   3            break;
+  61   3          }
+  62   2          case GREEN:
+  63   2          {
+  64   3            Red_light = OFF;
+  65   3            Amber_light = OFF;
+  66   3            Green_light = ON;
+  67   3            
+  68   3            if(++ Time_in_state == GREEN_DURATION)
+  69   3            {
+  70   4              Light_state_G = AMBER;
+  71   4              Time_in_state = 0;
+  72   4            }
+  73   3            break;
+  74   3          }
+  75   2          case AMBER:
+  76   2          {
+  77   3            Red_light = OFF;
+  78   3            Amber_light = ON;
+  79   3            Green_light = OFF;
+  80   3            
+  81   3            if(++Time_in_state == AMBER_DURATION)
+  82   3            {
+  83   4              Light_state_G = RED;
+  84   4              Time_in_state = 0;
+  85   4            }
+  86   3            break;
+  87   3          }
+  88   2        }
+  89   1      }
+  90          
+  91                
+  92            
+  93            
+  94            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    136    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

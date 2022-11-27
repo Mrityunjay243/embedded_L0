@@ -1,0 +1,103 @@
+C51 COMPILER V9.56.0.0   SIMPLE_EOS                                                        12/05/2019 15:27:44 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SIMPLE_EOS
+OBJECT MODULE PLACED IN .\Objects\Simple_EOS.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Simple_EOS.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\Simple_EOS.lst) TABS(2) OBJECT(.\Objects\Simple_EOS.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "Simple_EOS.h"
+   3          #include "PC_O.h"
+   4          #include "Elap_232.h"
+   5          
+   6          static tByte Call_count_G=0;
+   7          
+   8          sEOS_ISR() interrupt INTERRUPT_Timer_2_Overflow
+   9          {
+  10   1        
+  11   1        TF2=0;   //must manually reset the T2 flag
+  12   1        
+  13   1        //call RS-232 update function every 5ms
+  14   1        
+  15   1        PC_LINK_O_Update();
+  16   1        
+  17   1        //this isr called every 5ms
+  18   1        //-only want to update time evry second
+  19   1        if(++Call_count_G==200)
+  20   1        {
+  21   2          //time to update time
+  22   2          Call_count_G=0;
+  23   2          
+  24   2          //call time update function
+  25   2          Elapsed_Time_RS232_Update();
+  26   2          
+  27   2          
+  28   2          
+  29   2        }
+  30   1      }
+  31          
+  32          void sEOS_Init_Timer2(const tByte TICK_MS)
+  33          {
+  34   1        tLong Inc;
+  35   1        tWord Reload_16;
+  36   1        tByte Reload_08H, Reload_08L;
+  37   1        //timer2 is configured as a 16- bit timer,
+  38   1        //which is automatically reloaded when it overflows
+  39   1        T2CON=0x04;   //load timer2 control register
+  40   1        
+  41   1        
+  42   1        //number of timer increments required(max 65536)
+  43   1        Inc=((tLong)TICK_MS * (OSC_FREQ/1000))/ (tLong)OSC_PER_INST;
+  44   1      
+  45   1          //16-BIT reload value
+  46   1        Reload_16=(tWord)(65536UL-Inc);
+  47   1        
+  48   1        //8-bit reload values (High & low)
+  49   1        Reload_08H=(tByte)(Reload_16/256);
+  50   1        Reload_08L=(tByte)(Reload_16%256);
+  51   1        
+  52   1        //used for manually checking timing (in simulator)
+  53   1        //P2=Reload_08H;
+  54   1        //P3=Reload_08L;
+C51 COMPILER V9.56.0.0   SIMPLE_EOS                                                        12/05/2019 15:27:44 PAGE 2   
+
+  55   1        
+  56   1        TH2    =Reload_08H;    //load timer2 high byte
+  57   1        RCAP2H =Reload_08H;    //load timer2 reload capture register high byte
+  58   1        TL2    =Reload_08L;    //load Timer2 low byte
+  59   1        RCAP2L =Reload_08L;    //load timer2 reload capture register low byte
+  60   1        
+  61   1        //timer2 interrupt is enabled, and ISR will be called whenevr the timer overflows.
+  62   1        
+  63   1        ET2=1;
+  64   1        
+  65   1        //start Timer2 running
+  66   1        TR2=1;
+  67   1        
+  68   1        
+  69   1        EA=1;    //globally enable interrupts
+  70   1      }
+  71          
+  72          
+  73          void sEOS_Go_To_Sleep(void)
+  74          {
+  75   1        PCON|=0x01;    //enter idle(sleep) mode (generic 8051 version)
+  76   1      }
+  77          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    132    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

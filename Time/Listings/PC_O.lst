@@ -1,0 +1,97 @@
+C51 COMPILER V9.56.0.0   PC_O                                                              12/05/2019 14:20:35 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE PC_O
+OBJECT MODULE PLACED IN .\Objects\PC_O.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE PC_O.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\PC_O
+                    -.lst) TABS(2) OBJECT(.\Objects\PC_O.obj)
+
+line level    source
+
+   1          #include "Main.h"
+   2          #include "PC_O.h"
+   3          #include "Elap_232.h"
+   4          
+   5          tByte Out_written_index_G;  // Data in buffer that has been written
+   6          tByte Out_waiting_index_Gl  // Data in buffer is not yet written
+   7          
+   8          static void PC_LINK_O_Send_Char(const char);
+*** ERROR C129 IN LINE 8 OF PC_O.c: missing ';' before 'static'
+   9          
+  10          #define TRAN_BUFFER_LENGTH 20
+  11          
+  12          static tByte Tran_buffer[TRAN_BUFFER_LENGTH];
+  13          
+  14          static tByte Time_count_G = 0;
+  15          
+  16          void PC_LINK_O_Update(void)
+  17          {
+  18            //deal with transmit bytes here
+  19            
+  20            //are there any ready data to send?
+  21            
+  22            if(Out_written_index_G < Out_waiting_index_G)
+  23            {
+  24              PC_LINK_O_Send_Char(Tran_buffer[Out_written_index_G]);
+  25              
+  26              Ou0t_written_index_G++;
+  27            }
+  28            else
+  29            {
+  30              //no data to sent - just reset the buffer index
+  31              Out_waiting_index_G = 0;
+  32              Out-written_index_G = 0;
+  33            }
+  34          }
+  35          void PC_LINK_O_Write_String_To_Buffer(const char* const STR_PTR)
+  36          {
+  37            tByte i = o;
+  38            
+  39            while (STR_PTR[i] != '\0')
+  40            {
+  41              PC_LINK_O_Write_Char_To_Buffer(STR_PTR[i]);
+  42              i++;
+  43            }
+  44          }
+  45          void PC_LINK_O_Write_Char_To_Buffer(const char CHARACTER)
+  46          {
+  47            // write to buffer only if there is space
+  48            if(Out_waiting_index_G < TRAN_BUFFER_LENGTH)
+  49            {
+  50              Tran_buffer[out_waiting_index_G] = CHARACTER;
+  51              Out_waiting_index_G++;
+  52            }
+  53          }
+C51 COMPILER V9.56.0.0   PC_O                                                              12/05/2019 14:20:35 PAGE 2   
+
+  54          void PC_LINK_O_Send_Char(const char CHARACTER)
+  55          {
+  56            tLong Timeout1 = 0;
+  57            
+  58            if (CHARACTER == '\n')
+  59            {
+  60              Timeout1 = 0;
+  61              while ((++Timeout1) && (TI == 0));
+  62              
+  63              if(Timeout1 == 0)
+  64              {
+  65                // uart did not respond error
+  66                return;
+  67              }
+  68              T1 = 0;
+  69              SBUF = 0x0d; //output CR
+  70            }
+  71            Timeout1 = 0;
+  72            while((++Timeout1)&&(TI == 0));
+  73            
+  74            if(Timeout1 == 0)
+  75            {
+  76              //UART did not respond error
+  77              return;
+  78            }
+  79            TI = 0;
+  80            
+  81            SBUF = CHARACTER;
+  82          }
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

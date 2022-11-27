@@ -1,0 +1,52 @@
+C51 COMPILER V9.56.0.0   SWITCH_WAIT                                                       12/02/2019 16:23:03 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SWITCH_WAIT
+OBJECT MODULE PLACED IN .\Objects\Switch_Wait.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Switch_Wait.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\Switch_Wait.lst) TABS(2) OBJECT(.\Objects\Switch_Wait.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "Port.h"
+   3          #include "Switch_Wait.h"
+   4          #include "Delay_loop.h"
+   5          void SWITCH_Init(void)
+   6          {
+   7   1        Switch_pin = 1 ;
+   8   1        //USE THIS PIN FOR INPUT
+   9   1      }
+  10          
+  11          //SWITCH_Get_Input()   reads and debounces switch as follows
+  12          
+  13          bit SWITCH_Get_Input(const tByte DEBOUNCE_PERIOD)
+  14          {
+  15   1        bit Return_value = SWITCH_NOT_PRESSED ;
+  16   1        if(Switch_pin == 0)
+  17   1        {
+  18   2          DELAY_LOOP_Wait(DEBOUNCE_PERIOD);
+  19   2          
+  20   2          if(Switch_pin == 0)
+  21   2          {
+  22   3            while(Switch_pin == 0);
+  23   3            Return_value = SWITCH_PRESSED ;
+  24   3          }
+  25   2        }
+  26   1        
+  27   1        return Return_value ;
+  28   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     24    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

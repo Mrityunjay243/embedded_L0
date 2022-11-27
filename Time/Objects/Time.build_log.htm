@@ -1,0 +1,76 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.20.0.39
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: abcde abcde, abcde, LIC=----
+ 
+Tool Versions:
+Toolchain:       PK51 Prof. Develpers Kit  Version: 9.56.0.0
+Toolchain Path:  C:\Keil_v5\C51\BIN
+C Compiler:      C51.exe V9.56.0.0
+Assembler:       A51.exe V8.2.5.0
+Linker/Locator:  BL51.exe V6.22
+Library Manager: LIB51.exe V4.30.1.0
+Hex Converter:   OH51.exe V2.7.0.0
+CPU DLL:         S8051.DLL V3.106.0.0
+Dialog DLL:      DP51.DLL V2.63.0.0 
+<h2>Project:</h2>
+C:\Embedded_track\Time\Time.uvproj
+Project File Date:  12/04/2019
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling Main.c...
+Elap_232.h(4): error C132: 'Elapsed_Time_RS232_Init': not in formal parameter list
+Elap_232.h(5): error C132: 'Elapsed_Time_RS232_Update': not in formal parameter list
+Main.c(10): error C132: 'main': not in formal parameter list
+Main.c(10): error C141: syntax error near '{'
+Main.c(11): error C132: 'PC_LINK_O_Init_T1': not in formal parameter list
+Main.c(13): error C132: 'Elapsed_Time_RS232_Init': not in formal parameter list
+Main.c(15): error C141: syntax error near '5'
+Main.c(15): error C132: 'sEOS_Init_Timer2': not in formal parameter list
+Main.c(17): error C141: syntax error near 'while'
+Main.c(17): error C141: syntax error near '1'
+Main.c(19): error C231: 'sEOS_Go_To_Sleep': redefinition
+Main.c(20): error C141: syntax error near '}'
+compiling ELAP_232.c...
+ELAP_232.c(7): error C129: missing ';' before 'Sec_G'
+compiling PC_O.c...
+PC_O.c(8): error C129: missing ';' before 'static'
+compiling PC_O_T1.c...
+PC_O_T1.c(4): error C127: 'Out_written_index_G': invalid storage class
+PC_O_T1.c(5): error C127: 'Out_waiting_index_G': invalid storage class
+PC_O_T1.c(8): error C132: '_PC_LINK_O_Init_T1': not in formal parameter list
+PC_O_T1.c(8): error C141: syntax error near '{'
+PC_O_T1.c(9): error C136: 'PCON': 'void' on variable
+PC_O_T1.c(9): error C132: 'PCON': not in formal parameter list
+PC_O_T1.c(14): error C136: 'SCON': 'void' on variable
+PC_O_T1.c(14): error C244: 'SCON': can't initialize, bad type or class
+PC_O_T1.c(14): error C136: 'SCON': 'void' on variable
+PC_O_T1.c(14): error C132: 'SCON': not in formal parameter list
+PC_O_T1.c(16): error C132: 'TMOD': not in formal parameter list
+PC_O_T1.c(16): error C141: syntax error near '|='
+PC_O_T1.c(18): error C244: 'TH1': can't initialize, bad type or class
+PC_O_T1.c(19): error C202: 'BAUD_RATE': undefined identifier
+PC_O_T1.c(19): error C132: 'TH1': not in formal parameter list
+PC_O_T1.c(21): error C244: 'TL1': can't initialize, bad type or class
+PC_O_T1.c(21): error C132: 'TL1': not in formal parameter list
+PC_O_T1.c(22): error C244: 'TR1': can't initialize, bad type or class
+PC_O_T1.c(22): error C132: 'TR1': not in formal parameter list
+PC_O_T1.c(23): error C244: 'TI': can't initialize, bad type or class
+PC_O_T1.c(23): error C132: 'TI': not in formal parameter list
+PC_O_T1.c(25): error C244: 'Out_written_index_G': can't initialize, bad type or class
+PC_O_T1.c(25): error C132: 'Out_written_index_G': not in formal parameter list
+PC_O_T1.c(26): error C244: 'Out_waiting_index_G': can't initialize, bad type or class
+PC_O_T1.c(26): error C132: 'Out_waiting_index_G': not in formal parameter list
+PC_O_T1.c(28): error C244: 'ES': can't initialize, bad type or class
+PC_O_T1.c(28): error C132: 'ES': not in formal parameter list
+PC_O_T1.c(29): error C141: syntax error near '}'
+Target not created.
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>

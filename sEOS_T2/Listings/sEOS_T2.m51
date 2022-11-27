@@ -1,0 +1,215 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/03/2019  14:47:22  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\Simple_EOS.obj, .\Objects\Main.obj, .\Objects\X.obj TO .\Objects\sEOS_T2 PRINT (.\
+>> Listings\sEOS_T2.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Simple_EOS.obj (SIMPLE_EOS)
+  .\Objects\Main.obj (MAIN)
+  .\Objects\X.obj (X)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LIMUL)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\sEOS_T2 (SIMPLE_EOS)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         _DATA_GROUP_
+            DATA    000CH     0001H     UNIT         ?DT?SIMPLE_EOS
+            IDATA   000DH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0028H                  *** GAP ***
+            CODE    002BH     0003H     ABSOLUTE     
+                    002EH     07D2H                  *** GAP ***
+            CODE    0800H     00FBH     UNIT         ?C?LIB_CODE
+            CODE    08FBH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0987H     0046H     UNIT         ?PR?SEOS_ISR?SIMPLE_EOS
+            CODE    09CDH     0036H     UNIT         ?PR?_SEOS_INIT_TIMER2?SIMPLE_EOS
+            CODE    0A03H     000DH     UNIT         ?PR?MAIN?MAIN
+            CODE    0A10H     0004H     UNIT         ?PR?SEOS_GO_TO_SLEEP?SIMPLE_EOS
+            CODE    0A14H     0004H     UNIT         ?C_INITSEG
+            CODE    0A18H     0003H     UNIT         ?PR?X_INIT?X
+            CODE    0A1BH     0003H     UNIT         ?PR?X?X
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\sEOS_T2 (SIMPLE_EOS)
+
+
+SEGMENT                                    DATA_GROUP 
+  +--> CALLED SEGMENT                    START    LENGTH
+--------------------------------------------------------
+?PR?SEOS_ISR?SIMPLE_EOS                  -----    -----
+  +--> ?PR?X?X
+
+*** NEW ROOT ***************************************************
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/03/2019  14:47:22  PAGE 2
+
+
+?C_C51STARTUP                            -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                            -----    -----
+  +--> ?PR?X_INIT?X
+  +--> ?PR?_SEOS_INIT_TIMER2?SIMPLE_EOS
+  +--> ?PR?SEOS_GO_TO_SLEEP?SIMPLE_EOS
+
+?PR?_SEOS_INIT_TIMER2?SIMPLE_EOS         0008H    0004H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\sEOS_T2 (SIMPLE_EOS)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SIMPLE_EOS
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:00CBH         PUBLIC        RCAP2H
+  D:00CAH         PUBLIC        RCAP2L
+  C:0987H         PUBLIC        sEOS_ISR
+  D:000CH         PUBLIC        count
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:00A8H.5       PUBLIC        ET2
+  B:00C8H.7       PUBLIC        TF2
+  D:00CDH         PUBLIC        TH2
+  D:00CCH         PUBLIC        TL2
+  B:00C8H.2       PUBLIC        TR2
+  D:00C8H         PUBLIC        T2CON
+  C:09CDH         PUBLIC        _sEOS_Init_Timer2
+  C:0A10H         PUBLIC        sEOS_Go_To_Sleep
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          SEOS_ISR
+  C:0987H         LINE#         8
+  C:09A4H         LINE#         10
+  C:09A6H         LINE#         11
+  C:09A8H         LINE#         13
+  C:09AFH         LINE#         14
+  C:09B2H         LINE#         15
+  -------         ENDPROC       SEOS_ISR
+  -------         PROC          _SEOS_INIT_TIMER2
+  D:0007H         SYMBOL        TICK_MS
+  -------         DO            
+  D:0008H         SYMBOL        Inc
+  D:0004H         SYMBOL        Reload_16
+  D:0007H         SYMBOL        Reload_08H
+  D:0006H         SYMBOL        Reload_08L
+  -------         ENDDO         
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/03/2019  14:47:22  PAGE 3
+
+
+  C:09CDH         LINE#         17
+  C:09CDH         LINE#         18
+  C:09CDH         LINE#         25
+  C:09D0H         LINE#         27
+  C:09EAH         LINE#         30
+  C:09F2H         LINE#         33
+  C:09F2H         LINE#         34
+  C:09F4H         LINE#         38
+  C:09F6H         LINE#         39
+  C:09F8H         LINE#         40
+  C:09FAH         LINE#         41
+  C:09FCH         LINE#         43
+  C:09FEH         LINE#         45
+  C:0A00H         LINE#         47
+  C:0A02H         LINE#         48
+  -------         ENDPROC       _SEOS_INIT_TIMER2
+  -------         PROC          SEOS_GO_TO_SLEEP
+  C:0A10H         LINE#         49
+  C:0A10H         LINE#         50
+  C:0A10H         LINE#         51
+  C:0A13H         LINE#         52
+  -------         ENDPROC       SEOS_GO_TO_SLEEP
+  -------         ENDMOD        SIMPLE_EOS
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0A03H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:0A03H         LINE#         6
+  C:0A03H         LINE#         7
+  C:0A03H         LINE#         8
+  C:0A06H         LINE#         10
+  C:0A0BH         LINE#         12
+  C:0A0BH         LINE#         13
+  C:0A0BH         LINE#         14
+  C:0A0EH         LINE#         15
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        X
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:0090H.0       PUBLIC        led
+  C:0A18H         PUBLIC        X_Init
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/03/2019  14:47:22  PAGE 4
+
+
+  C:0A1BH         PUBLIC        X
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          X_INIT
+  C:0A18H         LINE#         5
+  C:0A18H         LINE#         6
+  C:0A18H         LINE#         7
+  C:0A1AH         LINE#         8
+  -------         ENDPROC       X_INIT
+  -------         PROC          X
+  C:0A1BH         LINE#         10
+  C:0A1BH         LINE#         11
+  C:0A1BH         LINE#         12
+  C:0A1DH         LINE#         13
+  -------         ENDPROC       X
+  -------         ENDMOD        X
+
+  -------         MODULE        ?C?ULDIV
+  C:083CH         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+  -------         MODULE        ?C?LIMUL
+  C:08CEH         PUBLIC        ?C?LIMUL
+  -------         ENDMOD        ?C?LIMUL
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0099H BYTE ( 7%) *
+******************************************************************************
+
+Program Size: data=14.0 xdata=0 code=548
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

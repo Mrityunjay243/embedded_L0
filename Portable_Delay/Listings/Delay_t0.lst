@@ -1,0 +1,53 @@
+C51 COMPILER V9.56.0.0   DELAY_T0                                                          12/02/2019 16:48:08 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE DELAY_T0
+OBJECT MODULE PLACED IN .\Objects\Delay_t0.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Delay_t0.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -Delay_t0.lst) TABS(2) OBJECT(.\Objects\Delay_t0.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          
+   3          #define PRELOAD01 (65536 - (tWord)(OSC_FREQ / (OSC_PER_INST*1020)))
+   4          #define PRELOAD01H (PRELOAD01 / 256)
+   5          #define PRELOAD01L (PRELOAD01 % 256)
+   6          
+   7          void DELAY_TO_Wait(const tWord N)
+   8          {
+   9   1        tWord ms;
+  10   1        
+  11   1        TMOD &= 0xF0; //clear all T0 BITS(T1 LEFT UNCHANGED)
+  12   1         TMOD |= 0x01; //set required T0 bits (t1 left unchanged)
+  13   1         
+  14   1         ET0 = 0; // no interrupts
+  15   1         
+  16   1         // values for 1 ms delay per loop
+  17   1         for(ms = 0 ; ms < N ; ms++)
+  18   1        { TH0 = PRELOAD01H ; // TIMER 0 INITIAL VALUE(HIGH BYTE)
+  19   2         TL0 = PRELOAD01L ; // TIMER 0 INITIAL VALUE(LOW BYTE)
+  20   2         
+  21   2         TF0 = 0; //CLEAR OVERFLOW FLAG
+  22   2         TR0 = 1; //START TIMER 0
+  23   2         
+  24   2         while(TF0 == 0);
+  25   2         // LOOP UNTIL TIMER 0 OVERFLOWS (TF0 == 1)
+  26   2         
+  27   2         TR0 = 0 ; // stop timer 0
+  28   2        }
+  29   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     41    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

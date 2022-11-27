@@ -1,0 +1,110 @@
+C51 COMPILER V9.56.0.0   PC_O                                                              12/05/2019 15:27:43 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE PC_O
+OBJECT MODULE PLACED IN .\Objects\PC_O.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE PC_O.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\PC_O
+                    -.lst) TABS(2) OBJECT(.\Objects\PC_O.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "PC_O.h"
+   3          #include "Elap_232.h"
+   4          
+   5          tByte Out_written_index_G ; // DATA I BUFER THAT HAS NOT BEEN WRITTEN
+   6          tByte Out_waiting_index_G ; // DATA IN BUFFER NOT YET WRITTEN
+   7          
+   8          static void PC_LINK_O_Send_Char(const char) ;
+   9          
+  10          #define TRAN_BUFFER_LENGTH 20 // THE TRANSMIT BUFFER LENGTH
+  11            
+  12            static tByte Tran_buffer[TRAN_BUFFER_LENGTH] ;
+  13            
+  14            static tByte Time_count_G = 0 ;
+  15            
+  16            void PC_LINK_O_Update(void)
+  17            {
+  18   1          // deals with transmit bytes here 
+  19   1          // are there any data ready to send?
+  20   1          
+  21   1          if(Out_written_index_G < Out_waiting_index_G)
+  22   1          {
+  23   2            PC_LINK_O_Send_Char(Tran_buffer[Out_written_index_G]) ;
+  24   2            Out_written_index_G++ ;
+  25   2          }
+  26   1          else
+  27   1          {
+  28   2            // no data to send - just reset tghe buffer
+  29   2            
+  30   2            Out_waiting_index_G =0 ;
+  31   2            Out_written_index_G = 0 ;
+  32   2          }
+  33   1        }
+  34              
+  35              void PC_LINK_O_Write_String_To_Buffer(const char* const STR_PTR)
+  36              {
+  37   1            tByte i = 0 ;
+  38   1            
+  39   1            while(STR_PTR[i] != '\0')
+  40   1            {
+  41   2              PC_LINK_O_Write_Char_To_Buffer(STR_PTR[i]) ;
+*** WARNING C206 IN LINE 41 OF PC_O.c: 'PC_LINK_O_Write_Char_To_Buffer': missing function-prototype
+*** ERROR C267 IN LINE 41 OF PC_O.c: 'PC_LINK_O_Write_Char_To_Buffer': requires ANSI-style prototype
+  42   2              i++ ;
+  43   2            }
+  44   1          }
+  45              
+  46              void PC_LINK_O_Write_Char_To_Buffer(const char CHARACTER)
+  47              {
+*** ERROR C231 IN LINE 47 OF PC_O.c: 'PC_LINK_O_Write_Char_To_Buffer': redefinition
+  48   1            // WRITE TO THE BUFFER ONLY THERE IS SPACE
+  49   1            // (NO ERROR REPORTING IN THIS LIBRARY ...)
+  50   1            
+  51   1            if(Out_waiting_index_G < TRAN_BUFFER_LENGTH)
+C51 COMPILER V9.56.0.0   PC_O                                                              12/05/2019 15:27:43 PAGE 2   
+
+  52   1            {
+  53   2              Tran_buffer[Out_waiting_index_G] =CHARACTER ;
+  54   2              Out_waiting_index_G++ ;
+  55   2            }
+  56   1          }
+*** ERROR C231 IN LINE 56 OF PC_O.c: 'PC_LINK_O_Write_Char_To_Buffer': redefinition
+  57              
+  58              void PC_LINK_O_Send_Char(const char CHARACTER) 
+  59              {
+  60   1            tLong Timeout1 = 0 ;
+  61   1            if(CHARACTER == '\n')
+  62   1            {
+  63   2              Timeout1 = 0 ;
+  64   2              while((++Timeout1) && (TI == 0));
+  65   2              
+  66   2              if(Timeout1 == 0)
+  67   2              {
+  68   3                
+  69   3              // uart did not respond - error 
+  70   3              // no error reporting in this library ...
+  71   3              return ;
+  72   3              }
+  73   2              
+  74   2              TI = 0 ;
+  75   2              SBUF =0x0d ; // OUTPUT CR
+  76   2              
+  77   2            }
+  78   1            
+  79   1          Timeout1 = 0 ;
+  80   1            while((++Timeout1) && (TI == 0)) ;
+  81   1            
+  82   1            if(Timeout1 == 0)
+  83   1            {
+  84   2              // uart did not respind - error 
+  85   2              // no error reporting in this simpkle library ...
+  86   2              return ;
+  87   2            }
+  88   1            
+  89   1            TI = 0 ;
+  90   1             SBUF = CHARACTER ;
+  91   1          }
+  92              
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  3 ERROR(S)

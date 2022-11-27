@@ -1,0 +1,50 @@
+C51 COMPILER V9.56.0.0   PC_O_T1                                                           12/05/2019 15:27:43 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE PC_O_T1
+OBJECT MODULE PLACED IN .\Objects\PC_O_T1.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE PC_O_T1.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\P
+                    -C_O_T1.lst) TABS(2) OBJECT(.\Objects\PC_O_T1.obj)
+
+line level    source
+
+   1          #include "main.h"
+   2          #include "PC_O_T1.h"
+   3          
+   4          extern tByte Out_written_index_G;
+   5          extern tByte Out_waiting_index_G;
+   6          
+   7          
+   8          void PC_LINK_O_Init_T1(const tWord BAUD_RATE)
+   9          {
+  10   1        PCON &=0x7F;   //set SMOD bit to 0 (don't double baud rates)
+  11   1        //receiver disabled
+  12   1        //8-bit data, 1 start bit, 1 stop bit , variable baud rate (asynchronous)
+  13   1        SCON=0x42;
+  14   1        
+  15   1        TMOD |= 0x20;  //T1 in mode 2, 8 bit auto reload
+  16   1        
+  17   1        TH1 = (256 - (tByte)((((tLong OSC_FREQ / 100) * 3125)
+*** ERROR C141 IN LINE 17 OF PC_O_T1.c: syntax error near '11059200UL'
+*** ERROR C141 IN LINE 17 OF PC_O_T1.c: syntax error near ')'
+*** ERROR C195 IN LINE 17 OF PC_O_T1.c: '*' illegal indirection
+*** ERROR C141 IN LINE 17 OF PC_O_T1.c: syntax error near ')'
+  18   1                    / ((tLong) BAUD_RATE * OSC_PER_INST * 1000)));
+*** ERROR C141 IN LINE 18 OF PC_O_T1.c: syntax error near ')'
+  19   1        
+  20   1        TL1 = TH1;
+  21   1        TR1 = 1;  //RUN THE TIMER
+  22   1      
+  23   1        TI=1;  //SEND FIRST CHARACTER (DUMMY)
+  24   1        
+  25   1        //SET UP THE BUFFERS FOR READING AND WRITING 
+  26   1        Out_written_index_G=0;
+  27   1        Out_waiting_index_G=0;
+  28   1        
+  29   1        //interrupt not enabled
+  30   1        ES=0;
+  31   1        
+  32   1        
+  33   1      }
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  5 ERROR(S)
